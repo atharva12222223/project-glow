@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tracker-v1';
+const CACHE_NAME = 'tracker-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -27,24 +27,25 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Fetch — serve from cache, fallback to network
+// Fetch — Stale-While-Revalidate
 self.addEventListener('fetch', event => {
-  // Skip non-GET requests
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    caches.match(event.request)
-      .then(cached => {
-        if (cached) return cached;
-        return fetch(event.request).then(response => {
-          // Cache successful responses
-          if (response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
-          }
-          return response;
-        });
-      })
-      .catch(() => caches.match('./index.html'))
+    caches.match(event.request).then(cachedResponse => {
+      const fetchPromise = fetch(event.request).then(networkResponse => {
+        if (networkResponse.status === 200) {
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, networkResponse.clone());
+          });
+        }
+        return networkResponse;
+      }).catch(() => {
+        // Fallback for completely offline
+      });
+      
+      // Return cached immediately if available, otherwise wait for network
+      return cachedResponse || fetchPromise;
+    })
   );
 });
