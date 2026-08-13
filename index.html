@@ -21,50 +21,52 @@
        ROOT DESIGN TOKENS
        ============================================= */
     :root {
-      --bg: #0d0d0d;
-      --surface: #1a1a1a;
-      --surface-2: #222222;
-      --surface-3: #2a2a2a;
-      --border: rgba(255,255,255,0.08);
-      --border-accent: rgba(255,107,0,0.25);
-      --orange: #ff6b00;
-      --orange-light: #ff9500;
-      --orange-glow: rgba(255,107,0,0.15);
-      --orange-glow-strong: rgba(255,107,0,0.3);
-      --green: #00c853;
-      --green-dim: rgba(0,200,83,0.15);
-      --red: #ff3d3d;
-      --red-dim: rgba(255,61,61,0.15);
-      --text: #f5f5f5;
-      --text-2: rgba(255,255,255,0.55);
+      --bg: #000000;
+      --surface: #1c1c1e;
+      --surface-2: #2c2c2e;
+      --surface-3: #3a3a3c;
+      --border: rgba(255,255,255,0.1);
+      --border-accent: rgba(255,149,0,0.3);
+      --orange: #ff9500;
+      --orange-light: #ffa733;
+      --orange-glow: rgba(255,149,0,0.1);
+      --orange-glow-strong: rgba(255,149,0,0.15);
+      --green: #34c759;
+      --green-dim: rgba(52,199,89,0.12);
+      --red: #ff3b30;
+      --red-dim: rgba(255,59,48,0.12);
+      --text: #ffffff;
+      --text-2: rgba(255,255,255,0.6);
       --text-3: rgba(255,255,255,0.3);
-      --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      --radius: 16px;
-      --radius-sm: 10px;
-      --radius-xs: 6px;
-      --radius-full: 50px;
-      --shadow: 0 4px 24px rgba(0,0,0,0.4);
-      --transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+      --font: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+      --radius: 20px;
+      --radius-sm: 12px;
+      --radius-xs: 8px;
+      --radius-full: 9999px;
+      --shadow: 0 4px 12px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       --safe-top: env(safe-area-inset-top, 0px);
       --safe-bottom: env(safe-area-inset-bottom, 0px);
     }
 
     /* Light theme */
     [data-theme="light"] {
-      --bg: #f5f5f7;
+      --bg: #f2f2f7;
       --surface: #ffffff;
-      --surface-2: #f0f0f2;
-      --surface-3: #e5e5ea;
-      --border: rgba(0,0,0,0.08);
-      --border-accent: rgba(255,107,0,0.3);
-      --text: #1c1c1e;
+      --surface-2: #e5e5ea;
+      --surface-3: #d1d1d6;
+      --border: rgba(0,0,0,0.05);
+      --border-accent: rgba(255,149,0,0.3);
+      --text: #000000;
       --text-2: rgba(0,0,0,0.5);
       --text-3: rgba(0,0,0,0.25);
-      --orange-glow: rgba(255,107,0,0.1);
-      --orange-glow-strong: rgba(255,107,0,0.2);
-      --green-dim: rgba(0,200,83,0.1);
-      --red-dim: rgba(255,61,61,0.1);
-      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+      --orange: #ff9500;
+      --orange-light: #e68600;
+      --orange-glow: rgba(255,149,0,0.1);
+      --orange-glow-strong: rgba(255,149,0,0.15);
+      --green-dim: rgba(52,199,89,0.1);
+      --red-dim: rgba(255,59,48,0.1);
+      --shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
     [data-theme="light"] .modal-sheet { background: #fff; }
     [data-theme="light"] #bottom-nav { background: rgba(245,245,247,0.9); }
@@ -124,12 +126,10 @@
       flex-shrink: 0;
     }
     .header-title {
-      font-size: 1.35rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      letter-spacing: -0.5px;
+      color: var(--text);
     }
     .header-date {
       font-size: 0.75rem;
@@ -283,13 +283,12 @@
       opacity: 0.9;
     }
     .btn-primary {
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      background: var(--orange);
       color: #fff;
-      box-shadow: 0 4px 15px var(--orange-glow-strong);
     }
     .btn-secondary {
       background: var(--surface-2);
-      color: var(--text);
+      color: var(--orange);
       border: 1px solid var(--border);
     }
     .btn-danger {
@@ -313,12 +312,11 @@
       width: 52px;
       height: 52px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      background: var(--orange);
       color: #fff;
       border: none;
       font-size: 1.5rem;
       cursor: pointer;
-      box-shadow: 0 4px 20px var(--orange-glow-strong);
       z-index: 99;
       transition: var(--transition);
       display: flex;
@@ -357,7 +355,6 @@
     }
     .input-field:focus {
       border-color: var(--orange);
-      box-shadow: 0 0 0 3px var(--orange-glow);
     }
     .input-field::placeholder { color: var(--text-3); }
     select.input-field {
@@ -374,9 +371,9 @@
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.7);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       z-index: 200;
       display: none;
       align-items: flex-end;
@@ -385,13 +382,14 @@
     .modal-overlay.active { display: flex; }
     .modal-sheet {
       background: var(--surface);
-      border-radius: var(--radius) var(--radius) 0 0;
+      border-radius: 24px 24px 0 0;
       width: 100%;
       max-width: 480px;
-      max-height: 85vh;
+      max-height: 85dvh;
       overflow-y: auto;
-      padding: 24px 20px calc(24px + var(--safe-bottom));
-      animation: sheetSlideUp 0.35s ease;
+      padding: 20px 20px calc(24px + var(--safe-bottom));
+      animation: sheetSlideUp 0.5s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+      box-shadow: 0 -10px 40px rgba(0,0,0,0.2);
     }
     @keyframes sheetSlideUp {
       from { transform: translateY(100%); }
@@ -419,7 +417,7 @@
       margin-bottom: 2px;
     }
     .dash-greeting span {
-      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      background: var(--orange);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -433,13 +431,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: var(--orange-glow);
-      border: 1px solid var(--border-accent);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
       border-radius: var(--radius-full);
       padding: 4px 14px;
       font-size: 0.75rem;
       font-weight: 700;
-      color: var(--orange-light);
+      color: var(--orange);
       margin-bottom: 20px;
     }
 
@@ -465,7 +463,6 @@
     .progress-ring .ring-fill {
       stroke: var(--orange);
       transition: stroke-dashoffset 0.8s ease;
-      filter: drop-shadow(0 0 6px var(--orange-glow-strong));
     }
     .progress-ring-text {
       font-size: 1rem;
@@ -500,7 +497,7 @@
     }
     .stat-value.green { color: var(--green); }
     .stat-value.red { color: var(--red); }
-    .stat-value.orange { color: var(--orange-light); }
+    .stat-value.orange { color: var(--orange); }
     .stat-label {
       font-size: 0.65rem;
       color: var(--text-2);
@@ -553,8 +550,7 @@
       transition: var(--transition);
     }
     .habit-item.completed {
-      border-color: rgba(0,200,83,0.2);
-      background: rgba(0,200,83,0.04);
+      border-color: var(--green);
     }
     .habit-emoji {
       font-size: 1.4rem;
@@ -573,7 +569,7 @@
       color: var(--text-3);
       margin-top: 2px;
     }
-    .habit-streak span { color: var(--orange-light); }
+    .habit-streak span { color: var(--orange); }
     .habit-action {
       flex-shrink: 0;
     }
@@ -1189,13 +1185,20 @@
     .photo-lightbox {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.92);
-      z-index: 250;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      z-index: 300;
       display: none;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 20px;
+      animation: iosFadeIn 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    @keyframes iosFadeIn {
+      from { opacity: 0; transform: scale(1.05); }
+      to { opacity: 1; transform: scale(1); }
     }
     .photo-lightbox.active { display: flex; }
     .photo-lightbox img {
