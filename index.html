@@ -79,13 +79,15 @@
       font-size: 16px; 
       -webkit-text-size-adjust: 100%;
       overflow: hidden;
-      height: 100%;
+      height: 100dvh;
     }
     body {
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
-      height: 100%;
+      height: 100dvh;
+      width: 100vw;
+      position: fixed;
       overflow: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -102,7 +104,7 @@
     #app {
       display: flex;
       flex-direction: column;
-      height: 100%;
+      height: 100dvh;
       max-width: 480px;
       margin: 0 auto;
       position: relative;
@@ -148,13 +150,13 @@
     .view {
       display: none;
       padding: 8px 16px 100px;
-      animation: viewFadeIn 0.35s ease;
+      animation: iosSlideIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .view.active { display: block; }
 
-    @keyframes viewFadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
+    @keyframes iosSlideIn {
+      from { opacity: 0.3; transform: translateX(15px) scale(0.98); }
+      to { opacity: 1; transform: translateX(0) scale(1); }
     }
 
     /* =============================================
@@ -190,9 +192,13 @@
       font-size: 0.6rem;
       font-weight: 600;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
       border-radius: var(--radius-sm);
       position: relative;
+    }
+    .nav-item:active {
+      transform: scale(0.85);
+      opacity: 0.7;
     }
     .nav-item.active { color: var(--orange); }
     .nav-item.active::before {
@@ -267,17 +273,20 @@
       border: none;
       border-radius: var(--radius-full);
       font-family: var(--font);
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-size: 0.95rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: var(--transition);
+      transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .btn:active {
+      transform: scale(0.95);
+      opacity: 0.9;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--orange), var(--orange-light));
       color: #fff;
       box-shadow: 0 4px 15px var(--orange-glow-strong);
     }
-    .btn-primary:active { transform: scale(0.96); }
     .btn-secondary {
       background: var(--surface-2);
       color: var(--text);
@@ -700,8 +709,9 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 16px;
+      padding: 18px 20px;
       margin-bottom: 12px;
+      transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
     .chart-title {
       font-size: 0.7rem;
